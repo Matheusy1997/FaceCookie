@@ -13,7 +13,7 @@ const router = Router();
 router.get('/:email', getUser);
 router.post('/login', login)
 router.post('/register', createUser);
-router.post('/delete', authenticateJWT, deleteUserByToken);
-router.post('/update', authenticateJWT, updateUserByToken);
+router.delete('/delete', authenticateJWT, deleteUserByToken);
+router.put('/update', authenticateJWT, updateUserByToken);
 
 export default router;
