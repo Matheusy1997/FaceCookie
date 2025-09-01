@@ -22,7 +22,7 @@ export const generateToken = (user: User) => {
         id: user.id,
         email: user.email,
         name: user.name
-    }
+        }
 
     const token = jwt.sign(
         userToken,

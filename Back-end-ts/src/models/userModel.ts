@@ -1,3 +1,4 @@
+import { User } from "@prisma/client";
 import { prisma } from "../prisma/client";
 
 export const findByEmail = async (email: string) => {
@@ -21,16 +22,17 @@ export const currentDelee = async (email: string) => {
 
 export const update = async (
   email: string,
-  data: { name: string; email: string; password: string }
+  user: User
 ) => {
   return await prisma.user.update({
     where: {
       email,
     },
     data: {
-      name: data.name,
-      email: data.email,
-      password: data.password,
+      name: user.name,
+      email: user.email,
+      password: user.password,
+      updatedAt: new Date()
     },
   });
 };

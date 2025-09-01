@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
+import { UserJwtPayload } from "../@types/express";
 
 const secretKey = process.env.CHAVE_SECRETA || "";
 
@@ -22,7 +23,7 @@ export const authenticateJWT = (
     if (err)
       return res.status(403).json({ message: "Token inválido ou expirado." });
 
-      req.user = user as { id: string; email: string; name: string };
+      req.user = user as UserJwtPayload;
       next();
   });
 };
