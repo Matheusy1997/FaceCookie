@@ -11,17 +11,18 @@ import { UserJwtPayload } from "../@types/express";
 
 
 export const getUser = async (req: Request, res: Response) => {
-  const { emaill } = req.params;
-
-  if (!isValidEmail(emaill))
+  const email  = req.query.email as string;
+  
+  if (!isValidEmail(email))
     return res.status(400).json({ message: "E-mail inválido." });
+  
   try {
-    const user = findByEmail(emaill);
+    const user = await findByEmail(email);
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }
 
-    res.json(user);
+    res.status(200).json(user);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Failed to fetch user" });
@@ -56,6 +57,7 @@ export const login = async (req: Request, res: Response) => {
 export const createUser = async (req: Request, res: Response) => {
   const { email, name } = req.body;
   let { password } = req.body;
+
   try {
     if (!isValidEmail(email))
       return res.status(400).json({ message: "E-mail inválido." });

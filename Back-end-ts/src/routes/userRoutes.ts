@@ -10,7 +10,7 @@ import {
 
 const router = Router();
 
-router.get('/:email', getUser);
+router.get('/', getUser);
 router.post('/login', login)
 router.post('/register', createUser);
 router.delete('/delete', authenticateJWT, deleteUserByToken);

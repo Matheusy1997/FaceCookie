@@ -22,6 +22,7 @@ app.use(helmet()); // Segurança para headers HTTP
 app.use(cors()); // Habilita CORS
 app.use(morgan('dev')); // Logging de requisições
 app.use(express.json()); // Parse de JSON no body
+app.use(express.urlencoded())
 
 // Routes
 app.use('/users', userRoutes);
