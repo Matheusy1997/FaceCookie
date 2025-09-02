@@ -78,17 +78,14 @@ export const deletePostByToken = async (req: Request, res: Response) => {
 
 export const updatePostByToken = async (req: Request, res: Response) => {
   const { id, title, content, published } = req.body
-  const user: UserJwtPayload = req.user as UserJwtPayload
-  const authorId = user.id
 
   try {
     const upPost: any = {
-      id,
       title,
       content,
       published
     }
-    const post: Post = await updatePost(id, authorId, upPost)
+    const post: Post = await updatePost(id, upPost)
     res.status(200).json({ message: 'Post atualizado com sucesso!', post})
   } catch (error) {
     console.error(`Erro em ${error}`)

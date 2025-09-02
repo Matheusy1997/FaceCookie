@@ -27,7 +27,7 @@ app.use(express.urlencoded())
 
 // Routes
 app.use('/users', userRoutes);
-app.use('/post', postRoutes)
+app.use('/posts', postRoutes)
 
 // Health check endpoint
 app.get('/health', (_req, res) => {

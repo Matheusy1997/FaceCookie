@@ -31,11 +31,11 @@ export const deletePost = async (id:number) => {
     return await prisma.post.delete({ where: { id }})
 }
 
-export const updatePost = async (postId: number, authorId: number, post:any) => {
+export const updatePost = async (postId: number, post:any) => {
     return await prisma.post.update({
         where: {
             id: postId,
-            authorId: authorId
+
         },
         data: {
             title: post.title,
