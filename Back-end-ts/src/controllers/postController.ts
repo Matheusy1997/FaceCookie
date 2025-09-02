@@ -49,6 +49,9 @@ export const createPost = async (req: Request, res: Response) => {
   const authorId = user.id
 
   try {
+    if(!user) {
+      return res.status(401).json({ message: 'É necessário estar logado para criar um post!'})
+    }
     const post: Post = await create(title, content, published, authorId)
     res.status(200).json(post)
   } catch (error) {
