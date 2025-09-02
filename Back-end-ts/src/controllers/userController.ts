@@ -83,7 +83,7 @@ export const deleteUserByToken = async (req: Request, res: Response) => {
   const { password } = req.body;
   const user: UserJwtPayload = req.user as UserJwtPayload;
 
-  if (!password && isValidPassword(password))
+  if (!password && !isValidPassword(password))
     return res.status(400).json({ message: "senha é obrigatórios." });
 
   try {

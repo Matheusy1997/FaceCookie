@@ -8,6 +8,7 @@ dotenv.config();
 
 // Import routes
 import userRoutes from './routes/userRoutes';
+import postRoutes from './routes/postRoutes'
 
 // Import middleware
 // import { errorHandler } from './middleware/errorHandler';
@@ -26,6 +27,7 @@ app.use(express.urlencoded())
 
 // Routes
 app.use('/users', userRoutes);
+app.use('/post', postRoutes)
 
 // Health check endpoint
 app.get('/health', (_req, res) => {

@@ -1,23 +1,23 @@
 import { Post } from '@prisma/client'
 import { prisma } from '../prisma/client'
 
-const findPostsUser = async (authorId: number) => {
-    const posts = await prisma.post.findMany({ where: { authorId: authorId}})
+export const findPostsUser = async (authorId: number) => {
+    const posts: Post [] = await prisma.post.findMany({ where: { authorId: authorId}})
     return posts
 } 
 
-const findPostsPublished = async () => {
-    const posts = await prisma.post.findMany({ where: { published: true}})
+export const findPostsPublished = async () => {
+    const posts: Post [] = await prisma.post.findMany({ where: { published: true}})
     return posts
 }
 
-const findPostsByTitle = async (title: string) => {
-    const posts = await prisma.post.findMany({ where: { title } })
+export const findPostsByTitle = async (title: string) => {
+    const posts: Post [] = await prisma.post.findMany({ where: { title } })
     return posts
 }
 
-const createPost = async (title: string, content: string, published: boolean, authorId: number) => {
-    return prisma.post.create({
+export const create = async (title: string, content: string, published: boolean, authorId: number) => {
+    return await prisma.post.create({
         data: {
             title,
             content,
@@ -27,12 +27,12 @@ const createPost = async (title: string, content: string, published: boolean, au
     })
 }
 
-const deletePost = async (id:number) => {
-    return prisma.post.delete({ where: { id }})
+export const deletePost = async (id:number) => {
+    return await prisma.post.delete({ where: { id }})
 }
 
-const updatePost = async (postId: number, authorId: number, post: Post) => {
-    return prisma.post.update({
+export const updatePost = async (postId: number, authorId: number, post:any) => {
+    return await prisma.post.update({
         where: {
             id: postId,
             authorId: authorId
