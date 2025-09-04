@@ -7,7 +7,7 @@ const router = Router()
 router.get('/', authenticateJWT, getPosts)
 router.post('/create', authenticateJWT, createPost)
 router.delete('/delete', authenticateJWT, deletePostByToken)
-router.put('/update', authenticateJWT, updatePostByToken)
+router.patch('/update', authenticateJWT, updatePostByToken)
 
 
 export default router
